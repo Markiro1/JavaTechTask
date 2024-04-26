@@ -1,5 +1,6 @@
 package com.ashapiro.testassigment.controller;
 
+import com.ashapiro.testassigment.dto.UpdateUserDto;
 import com.ashapiro.testassigment.dto.UserDto;
 import com.ashapiro.testassigment.model.User;
 import com.ashapiro.testassigment.service.UserService;
@@ -34,10 +35,10 @@ public class UserController {
     }
 
     @PatchMapping("/update/{userId}")
-    public ResponseEntity<User> partiallyUpdateUser(@PathVariable int userId, @RequestBody User user) {
+    public ResponseEntity<User> partiallyUpdateUser(@PathVariable int userId, @RequestBody UpdateUserDto updateUserDto) {
         return ResponseEntity
                 .ok()
-                .body(userService.partiallyUpdate(userId, user));
+                .body(userService.partiallyUpdate(userId, updateUserDto));
     }
 
     @DeleteMapping("/delete/{userId}")

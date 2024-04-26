@@ -1,5 +1,6 @@
 package com.ashapiro.testassigment.service;
 
+import com.ashapiro.testassigment.dto.UpdateUserDto;
 import com.ashapiro.testassigment.dto.UserDto;
 import com.ashapiro.testassigment.model.User;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,7 @@ public interface UserService {
 
     User update(int userId, UserDto userDto);
 
-    User partiallyUpdate(int userId, User user);
+    User partiallyUpdate(int userId, UpdateUserDto updateUserDto);
 
     void delete(int userId);
 

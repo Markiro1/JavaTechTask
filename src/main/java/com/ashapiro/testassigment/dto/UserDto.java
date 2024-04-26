@@ -7,9 +7,8 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Getter @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @ToString
+@NoArgsConstructor
 public class UserDto {
 
     @NotNull(message = "Email is required")
@@ -29,5 +28,4 @@ public class UserDto {
     private String address;
 
     private String phoneNumber;
-
 }

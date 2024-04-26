@@ -1,5 +1,6 @@
 package com.ashapiro.testassigment.service.impl;
 
+import com.ashapiro.testassigment.dto.UpdateUserDto;
 import com.ashapiro.testassigment.dto.UserDto;
 import com.ashapiro.testassigment.exception.IncorrectDateException;
 import com.ashapiro.testassigment.exception.UpdateDataException;
@@ -52,11 +53,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User partiallyUpdate(int userId, User user) {
+    public User partiallyUpdate(int userId, UpdateUserDto updateUserDto) {
         verifyId(userId);
         User currentUser = userMap.get(userId);
         try {
-            return updateFields(currentUser, user);
+            return updateFields(currentUser, updateUserDto);
         } catch (IllegalAccessException e) {
             throw new UpdateDataException();
         }
@@ -78,7 +79,8 @@ public class UserServiceImpl implements UserService {
                 .toList();
     }
 
-    private User updateFields(User currentUser, User newUser) throws IllegalAccessException {
+    private User updateFields(User currentUser, UpdateUserDto updateUserDto) throws IllegalAccessException {
+        User updatedUser = modelMapper.map(updateUserDto, User.class);
         Field[] fields = currentUser.getClass().getDeclaredFields();
         for (Field field : fields) {
             field.setAccessible(true);
@@ -87,9 +89,9 @@ public class UserServiceImpl implements UserService {
                 continue;
             }
             Object currentValue = field.get(currentUser);
-            Object newValue = field.get(newUser);
+            Object newValue = field.get(updatedUser);
 
-            if (newValue != null && !Objects.equals(currentValue, newUser)) {
+            if (newValue != null && !Objects.equals(currentValue, updatedUser)) {
                 field.set(currentUser, newValue);
             }
         }
