@@ -16,7 +16,7 @@ public class User {
     private int id;
 
     @NotNull(message = "Email is required")
-    @Pattern(regexp = "^[0-9]+$",
+    @Pattern(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$",
             message = "Email must be in a valid format")
     private String email;
 
