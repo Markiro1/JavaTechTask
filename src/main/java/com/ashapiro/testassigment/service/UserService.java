@@ -1,22 +1,10 @@
 package com.ashapiro.testassigment.service;
 
-import com.ashapiro.testassigment.dto.UpdateUserDto;
-import com.ashapiro.testassigment.dto.UserDto;
+import com.ashapiro.testassigment.dto.user.UserAuthDTO;
 import com.ashapiro.testassigment.model.User;
-import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.util.List;
 
 public interface UserService {
 
-    User add(UserDto userDto);
+    User registration(UserAuthDTO userDTO);
 
-    User update(int userId, UserDto userDto);
-
-    User partiallyUpdate(int userId, UpdateUserDto updateUserDto);
-
-    void delete(int userId);
-
-    List<User> searchUsersByDate(LocalDate from, LocalDate to);
 }
