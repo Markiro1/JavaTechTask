@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -16,6 +17,9 @@ import java.time.LocalDate;
 @ToString
 @EqualsAndHashCode
 public class SalesAndTrafficByDate  implements Serializable{
+
+    @Id
+    private String id;
 
     private LocalDate date;
 

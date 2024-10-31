@@ -42,7 +42,7 @@ public class DataInitializer {
         initializeDataBase();
     }
 
-    @Scheduled(fixedRate = 600_000)
+    @Scheduled(fixedRate = 30_000)
     public void scheduledUpdate() {
         log.info("Update all statistics");
         updateData();
