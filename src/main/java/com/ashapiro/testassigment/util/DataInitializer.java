@@ -7,6 +7,7 @@ import com.ashapiro.testassigment.model.SalesAndTrafficByDate;
 import com.ashapiro.testassigment.repository.ReportSpecificationRepo;
 import com.ashapiro.testassigment.repository.SalesAndTrafficByAsinRepo;
 import com.ashapiro.testassigment.repository.SalesAndTrafficByDateRepo;
+import com.ashapiro.testassigment.repository.UserRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
@@ -29,6 +30,8 @@ public class DataInitializer {
     private final SalesAndTrafficByAsinRepo salesAndTrafficByAsinRepo;
 
     private final SalesAndTrafficByDateRepo salesAndTrafficByDateRepo;
+
+    private final UserRepository userRepository;
 
     private final ObjectMapper objectMapper;
     private final File file = new File("C:\\Users\\65sum\\Desktop\\test_report.json");
@@ -113,6 +116,7 @@ public class DataInitializer {
         StatisticsDTO dto = readFileData();
         if (dto == null) return;
 
+        userRepository.deleteAll();
         reportSpecificationRepo.deleteAll();
         salesAndTrafficByAsinRepo.deleteAll();
         salesAndTrafficByDateRepo.deleteAll();
